@@ -1,0 +1,4 @@
+CC		= /usr/lib/mingw64-toolchain/bin/x86_64-w64-mingw32-gcc
+SDL2_CONFIG	= ./cross/src/SDL2-2.30.6/x86_64-w64-mingw32/bin/sdl2-config
+
+include ./base.mk
