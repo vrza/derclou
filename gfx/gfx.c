@@ -1585,7 +1585,7 @@ void ShowIntro(void)
             continue;
         }
 
-        fp = dskOpen(pathName, "r");
+        fp = dskOpen(pathName, "rb");
 
 	if (fp) {
             XMSOffset = 0;
