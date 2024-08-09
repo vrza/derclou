@@ -122,6 +122,24 @@ S32 inpWaitFor(S32 l_Mask)
 
 	while (SDL_PollEvent(&ev)) {
 	    switch (ev.type) {
+	    case SDL_WINDOWEVENT:
+		{
+		    switch (ev.window.event) {
+			    case SDL_WINDOWEVENT_SIZE_CHANGED:
+			    case SDL_WINDOWEVENT_EXPOSED:
+				    gfxRefreshArea(0, 0, SCREEN_WIDTH, SCREEN_HEIGHT);
+			    break;
+			    default:
+			    break;
+		    }
+		}
+		break;
+	    case SDL_QUIT:
+		{
+		    SDL_Quit();
+		    exit(0);
+		}
+		break;
 	    case SDL_KEYDOWN:
 		{
 		    switch (ev.key.keysym.sym) {
