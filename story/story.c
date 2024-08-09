@@ -1970,7 +1970,7 @@ S32 tcIsLastBurglaryOk(void)
 	    madeIt = 0;
 
     if ((Search.GuyXPos[0] >= carXPos0) && (Search.GuyXPos[0] <= carXPos1) &&
-	(Search.GuyYPos[0] >= carYPos0) && (Search.GuyYPos[i] <= carYPos1))
+	(Search.GuyYPos[0] >= carYPos0) && (Search.GuyYPos[0] <= carYPos1))
 	madeIt = 0;
 
     return madeIt;
