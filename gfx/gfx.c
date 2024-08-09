@@ -20,6 +20,7 @@
  ****************************************************************************/
 
 #include <assert.h>
+#include <math.h>
 #include "SDL.h"
 
 #include "base/base.h"
@@ -63,25 +64,25 @@ SDL_Texture *sdlTexture;
 void gfxInit(void)
 {
     Uint32 flags;
-    int sw, sh;
+    int initialWidth, initialHeight;
+    double scaledWidth, scaledHeight;
 
     SDL_InitSubSystem(SDL_INIT_VIDEO);
 
-    flags = SDL_WINDOW_OPENGL;
-
+    flags = SDL_WINDOW_OPENGL | SDL_WINDOW_RESIZABLE;
     if (setup.FullScreen) {
         flags |= SDL_WINDOW_FULLSCREEN_DESKTOP;
-
-	sw = sh = 0;
-    } else {
-	sw = SCREEN_WIDTH*setup.Scale;
-	sh = SCREEN_HEIGHT*setup.Scale;
     }
+
+    scaledWidth = (double)SCREEN_WIDTH * setup.Scale;
+    scaledHeight = (double)SCREEN_HEIGHT * setup.Scale;
+    initialWidth = (int)ceil(scaledWidth);
+    initialHeight = (int)ceil(scaledHeight);
 
     sdlWindow = SDL_CreateWindow("Der Clou!",
 	    SDL_WINDOWPOS_UNDEFINED,
 	    SDL_WINDOWPOS_UNDEFINED,
-	    sw, sh,
+	    initialWidth, initialHeight,
 	    flags);
     sdlRenderer = SDL_CreateRenderer(sdlWindow, -1, 0);
     SDL_SetHint(SDL_HINT_RENDER_SCALE_QUALITY, "linear");
@@ -1871,6 +1872,7 @@ void gfxRealRefreshArea(U16 x, U16 y, U16 w, U16 h)
 	    pixels, pitch);
     SDL_UnlockTexture(sdlTexture);
 
+    SDL_RenderClear(sdlRenderer);
     SDL_RenderCopy(sdlRenderer, sdlTexture, NULL, NULL);
     SDL_RenderPresent(sdlRenderer);
 }
@@ -2008,28 +2010,84 @@ void MemBlit(MemRastPort *src, Rect *src_rect,
 
 void gfxGetMouseXY(GC *gc, U16 *pMouseX, U16 *pMouseY)
 {
-    int MouseX = 0, MouseY = 0;
+    CoordinatesU16 logicalMouse;
+    CoordinatesDouble scaledBoxedMouse;
 
-    SDL_PumpEvents();
+    scaledBoxedMouse = getScaledBoxedMouseCoordinates();
 
-    SDL_GetMouseState(&MouseX, &MouseY);
+    logicalMouse.x = (scaledBoxedMouse.x < gc->clip.x) ? 0 : (int)round(scaledBoxedMouse.x) - gc->clip.x;
+    logicalMouse.y = (scaledBoxedMouse.y < gc->clip.y) ? 0 : (int)round(scaledBoxedMouse.y) - gc->clip.y;
 
-    if (pMouseX) {
-	MouseX /= setup.Scale;
-	if (MouseX < gc->clip.x)
-	    MouseX = 0;
-	else
-	    MouseX -= gc->clip.x;
-	*pMouseX = MouseX;
-    }
-
-    if (pMouseY) {
-	MouseY /= setup.Scale;
-	if (MouseY < gc->clip.y)
-	    MouseY = 0;
-	else
-	    MouseY -= gc->clip.y;
-	*pMouseY = MouseY;
-    }
+    if (pMouseX) *pMouseX = logicalMouse.x;
+    if (pMouseY) *pMouseY = logicalMouse.y;
 }
 
+CoordinatesDouble getScaledBoxedMouseCoordinates()
+{
+    int w, h;
+    double scale;
+    CoordinatesU16 boxedMouse;
+    CoordinatesDouble scaledBoxedMouse;
+
+    SDL_GetWindowSize(sdlWindow, &w, &h);
+    scale = scaleFromWindowSize(w, h);
+    boxedMouse = getBoxedMouseCoordinates(w, h, scale);
+
+    scaledBoxedMouse.x = boxedMouse.x / scale;
+    scaledBoxedMouse.y = boxedMouse.y / scale;
+
+    return scaledBoxedMouse;
+}
+
+CoordinatesU16 getBoxedMouseCoordinates(int w, int h, double scale)
+{
+    int mouseX, mouseY = 0;
+    double usedW, usedH, marginX, marginY;
+    CoordinatesU16 boxedMouse;
+    double logicalScreenAspectRatio = (double)SCREEN_WIDTH / (double)SCREEN_HEIGHT;
+    double windowAscpectRatio = (double)w /(double)h;
+
+    SDL_PumpEvents();
+    SDL_GetMouseState(&mouseX, &mouseY);
+
+    usedH = h;
+    usedW = w;
+    boxedMouse.x = mouseX;
+    boxedMouse.y = mouseY;
+
+    /* adjust for letterboxing */
+    if (windowAscpectRatio > logicalScreenAspectRatio) {
+        usedW = SCREEN_WIDTH * scale;
+        marginX = (((double)w) - usedW) / 2;
+        if (mouseX < marginX) {
+            boxedMouse.x = 0;
+        } else if (mouseX > w - marginX) {
+            boxedMouse.x = (int)usedW;
+        } else {
+            boxedMouse.x = mouseX - marginX;
+        }
+    }
+
+    if (windowAscpectRatio < logicalScreenAspectRatio) {
+        usedH = SCREEN_HEIGHT * scale;
+        marginY = (((double)h) - usedH) / 2;
+        if (mouseY < marginY) {
+            boxedMouse.y = 0;
+        } else if (mouseY > h - marginY) {
+            boxedMouse.y = (int)usedH;
+        } else {
+            boxedMouse.y = mouseY - marginY;
+        }
+    }
+
+    return boxedMouse;
+}
+
+double scaleFromWindowSize(int w, int h)
+{
+    double logicalScreenAspectRatio = (double)SCREEN_WIDTH / (double)SCREEN_HEIGHT;
+    double windowAscpectRatio = (double)w /(double)h;
+    return (windowAscpectRatio > logicalScreenAspectRatio)
+       ? (double)h / (double)SCREEN_HEIGHT
+       : (double)w / (double)SCREEN_WIDTH;
+}

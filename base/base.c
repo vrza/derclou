@@ -598,6 +598,7 @@ static void parseOptions(int argc, char *argv[])
 {
     int i;
     const char *s;
+    double scaleArg;
 
     /* default values. */
     setup.FullScreen    = false;
@@ -607,7 +608,7 @@ static void parseOptions(int argc, char *argv[])
     setup.CDRom         = false;
     setup.Debug         = 1;
     setup.CDAudio       = false;
-    setup.Scale         = 1;
+    setup.Scale         = 1.0;
 
     for (i = 1; i < argc; i++) {
         s = argv[i];
@@ -615,8 +616,10 @@ static void parseOptions(int argc, char *argv[])
         if (s[0] == '-') {
             switch (s[1]) {
             case 'g':
-                setup.Scale = max(atoi(s+2), 1);
-		break;
+                /* TODO better arg parsing */
+                sscanf(s+2, "%lf", &scaleArg);
+                setup.Scale = max(scaleArg, 1);
+                break;
 
             case 'd':
                 setup.Debug = max(atoi(s+2), 0);

@@ -95,7 +95,7 @@ struct Setup {
     S32 MusicVolume;
     unsigned Debug;
     bool CDAudio;
-    unsigned Scale;
+    double Scale;
 };
 
 extern struct Setup setup;

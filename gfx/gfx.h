@@ -99,6 +99,16 @@ struct _Rect {
     U16 h;
 };
 
+typedef struct sCoordinatesU16 {
+    U16 x;
+    U16 y;
+} CoordinatesU16;
+
+typedef struct sCoordinatesDouble{
+    double x;
+    double y;
+} CoordinatesDouble;
+
 struct Collection {
     NODE Link;
 
@@ -247,6 +257,10 @@ void gfxScreenUnFreeze(void);
 void gfxGetMouseXY(GC *gc, U16 *pMouseX, U16 *pMouseY);
 
 void ShowIntro(void);
+
+double scaleFromWindowSize(int w, int h);
+CoordinatesU16 getBoxedMouseCoordinates(int w, int h, double scale);
+CoordinatesDouble getScaledBoxedMouseCoordinates(void);
 
 #include "gfx/gfxnch4.h"
 #endif
