@@ -1869,7 +1869,7 @@ S32 plPlayer(U32 objId, U32 actionTime, ubyte(*actionFunc) (U32, U32))
 		}
 
 		SetMenuTimeOutFunc(NULL);
-		inpSetWaitTicks(0);	/* normales Ausma· */
+		inpSetWaitTicks(0);	/* normales Ausma√ü */
 
 		Search.LastAreaId = lsGetActivAreaID();
 		Search.TimeOfBurglary = PD.realTime;

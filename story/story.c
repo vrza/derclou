@@ -411,11 +411,11 @@ void tcDoneCallFromPooly(void)
 
 void tcInitPrison(void)
 {
-    /* es ist wichtig, daá die Location hier gesetzt wird */
-    /* da sonst diverse Szenen in die Gef„ngnisszene      */
-    /* hineinplatzen k”nnen */
+    /* es ist wichtig, daÃŸ die Location hier gesetzt wird */
+    /* da sonst diverse Szenen in die GefÃ¤ngnisszene      */
+    /* hineinplatzen kÃ¶nnen */
 
-    SetLocation(64);		/* auf ins Gef„ngnis */
+    SetLocation(64);		/* auf ins GefÃ¤ngnis */
 }
 
 void tcDonePrison(void)
@@ -463,7 +463,7 @@ S32 tcIsDeadlock(void)
 	    comp->GebrauchsArt + comp->Vase + comp->Delikates;
 
 	money += total / 15;	/* im schlimmsten Fall bleibt Matt in */
-	/* etwa nur ein Fnfzehnten           */
+	/* etwa nur ein FÃ¼nfzehnten           */
 
 	hasAll(Person_Marc_Smith, OLF_NORMAL, Object_Car);
 
@@ -1218,9 +1218,9 @@ void tcDone7thBurglary(void)
         AddTaxiLocation(81);	/* bulstrode  */
     }
 
-    /* Jaguar kommt hier, da: 1. man barucht ihn fr Villa, */
-    /* 2. Jaguar wird in Fahndung nie erwischt (sonst k”nnte er nicht explodieren) */
-    /* 3. man soll Jaguar nicht zu lange haben k”nnen (da man nie erwischt wird  */
+    /* Jaguar kommt hier, da: 1. man barucht ihn fÃ¼r Villa, */
+    /* 2. Jaguar wird in Fahndung nie erwischt (sonst kÃ¶nnte er nicht explodieren) */
+    /* 3. man soll Jaguar nicht zu lange haben kÃ¶nnen (da man nie erwischt wird  */
 
     hasSet(Person_Marc_Smith, Car_Jaguar_XK_1950);
 
@@ -1392,7 +1392,7 @@ void tcDone9thBurglary(void)
     if (Env->MattIsInLove)
 	AddTaxiLocation(61);	/* lisson */
 
-    /* nur mehr M”glichkeiten: gehen */
+    /* nur mehr MÃ¶glichkeiten: gehen */
     SetEnabledChoices(GO | WAIT);
 
     GetScene(SCENE_FAHNDUNG)->Geschehen = 0;	/* damit nicht gleich Burglary 2 geschieht */
@@ -1470,7 +1470,7 @@ void tcDoneConfessingSabien(void)
 
 	Say(STORY_1_TXT, 0, OLD_MATT_PICTID, "ST_19_OLD_0");
 
-	/* hier eventuell glckliche Anim zeigen! */
+	/* hier eventuell glÃ¼ckliche Anim zeigen! */
 	gfxShow(164, GFX_NO_REFRESH | GFX_OVERLAY, 0, -1, -1);	/*  The End */
 
 	inpWaitFor(INP_LBUTTONP);
@@ -1614,7 +1614,7 @@ void tcDoneSouthhampton(void)
     Environment Env = dbGetObject(Environment_TheClou);
 
     SceneArgs.Ueberschrieben = 1;
-    SceneArgs.ReturnValue = 0;	/* MUá SEIN! */
+    SceneArgs.ReturnValue = 0;	/* MUÃŸ SEIN! */
 
     SetEnabledChoices(GP_ALL_CHOICES_ENABLED);
 
@@ -1627,7 +1627,7 @@ void tcDoneSouthhampton(void)
 	tcInitTowerBurglary();	/* wird absichtlich X mal aufgerufen - siehe weiter unten! */
     }
 
-    /* mit Gehen oder Planen kommt man aus dem Men raus */
+    /* mit Gehen oder Planen kommt man aus dem MenÃ¼ raus */
     while ((activ != 0) && (SceneArgs.ReturnValue == 0)) {
 	inpTurnESC(0);
 	inpTurnFunctionKey(1);
@@ -1766,7 +1766,7 @@ void tcInitTowerBurglary(void)
     car->MotorState = 255;
     car->BodyWorkState = 180;
     car->TyreState = 255;
-    car->Strike = 80;		/* extrem niedrig! (fr diesen Wagen) */
+    car->Strike = 80;		/* extrem niedrig! (fÃ¼r diesen Wagen) */
 
     /* Organisatorisches! */
     Organisation.CarID = Car_Cadillac_Club_1952;
@@ -1780,7 +1780,7 @@ S32 tcDoTowerBurglary(void)
 {
     S32 burglary;
 
-    /* das Organisatorische muá hier wiederholt werden, da */
+    /* das Organisatorische muÃŸ hier wiederholt werden, da */
     /* es sonst zu Fehler kommen kann, da die Organisation */
     /* nicht abgespeichert wird!                           */
     tcInitTowerBurglary();
@@ -1859,7 +1859,7 @@ void tcDoneKaserne(void)
     car->MotorState = 255;
     car->BodyWorkState = 180;
     car->TyreState = 255;
-    car->Strike = 80;		/* extrem niedrig! (fr diesen Wagen) */
+    car->Strike = 80;		/* extrem niedrig! (fÃ¼r diesen Wagen) */
 
     /* Organisatorisches! */
     Organisation.CarID = Car_Cadillac_Club_1952;
@@ -1951,7 +1951,7 @@ S32 tcIsLastBurglaryOk(void)
     LSObject left = dbGetObject(tcLAST_BURGLARY_LEFT_CTRL_OBJ);
     LSObject right = dbGetObject(tcLAST_BURGLARY_RIGHT_CTRL_OBJ);
 
-    /* Links muá ein, Rechts muá ausgeschalten sein */
+    /* Links muÃŸ ein, Rechts muÃŸ ausgeschalten sein */
     /* 1.. OFF!    */
 
     if ((left->ul_Status & (1 << Const_tcON_OFF)))
@@ -1963,7 +1963,7 @@ S32 tcIsLastBurglaryOk(void)
     if (!has(Person_Matt_Stuvysunt, Loot_Dokument))
 	madeIt = 0;
 
-    /* alle anderen mssen beim Auto sein... */
+    /* alle anderen mÃ¼ssen beim Auto sein... */
     for (i = 1; i < 4; i++)
 	if ((Search.GuyXPos[i] < carXPos0) || (Search.GuyXPos[i] > carXPos1) ||
 	    (Search.GuyYPos[i] < carYPos0) || (Search.GuyYPos[i] > carYPos1))

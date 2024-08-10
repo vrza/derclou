@@ -459,11 +459,11 @@ U32 StdHandle(U32 choice)
 			sndStopSound(0);
 
 		    if ((building = tcOrganisation())) {
-			AddVTime(27153);	/* etwas Åber 15 Tage ! */
+			AddVTime(27153);	/* etwas √ºber 15 Tage ! */
 
 			succ_eventnr = tcBurglary(building);
 		    } else {
-			AddVTime(443);	/* etwas Åber 7 Stunden */
+			AddVTime(443);	/* etwas √ºber 7 Stunden */
 
 			CurrentBackground = BGD_LONDON;
 			ShowMenuBackground();
@@ -559,7 +559,7 @@ void StdDone(void)
 
 void InitTaxiLocations(void)
 {
-    RemRelation(Relation_taxi);	/* alle Relationen lîschen! */
+    RemRelation(Relation_taxi);	/* alle Relationen l√∂schen! */
     AddRelation(Relation_taxi);
 
     if (GamePlayMode & GP_STORY_OFF) {
@@ -755,7 +755,7 @@ void tcPersonGreetsMatt(void)
     static U32 upper = 4L;
     U32 locNr;
 
-    if (CalcRandomNr(0L, upper) == 1) {	/* alle upper mal wird Matt gegrÅ·t ! */
+    if (CalcRandomNr(0L, upper) == 1) {	/* alle upper mal wird Matt gegr√º√üt ! */
 	if (CalcRandomNr(0L, 4L) == 1)	/* alle 4 mal */
 	    upper += 2;		/* wahrscheinlichkeit wird kleiner ! */
 

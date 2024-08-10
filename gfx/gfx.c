@@ -13,6 +13,7 @@
 /****************************************************************************
   Portions copyright (c) 2005 Vasco Alexandre da Silva Costa
   Portions copyright (c) 2005 Jens Granseuer
+  Portions copyright (c) 2024 Vladimir Vrziƒá
 
   Please read the license terms contained in the LICENSE and
   publiclicensecontract.doc files which should be contained with this
@@ -99,14 +100,14 @@ void gfxInit(void)
 
     gfxSetGC(NULL);
 
-    /* diese RP mÅssen nur ein Bild maximaler Grî·e aufnehmen kînnen */
-    /* in anderen Modulen wird vorausgesetzt, da· alle RastPorts gleich */
-    /* gro· sind und auch gleich gro· wie die StdBuffer sind */
+    /* diese RP m√ºssen nur ein Bild maximaler Gr√∂√üe aufnehmen k√∂nnen */
+    /* in anderen Modulen wird vorausgesetzt, da√ü alle RastPorts gleich */
+    /* gro√ü sind und auch gleich gro√ü wie die StdBuffer sind */
     /* StdBuffer = 61 * 1024 = 62464, Mem: 62400 */
 
-    /* Ausnahme (nachtrÑglich) : der RefreshRP ist nur 320 * 140 Pixel gro·!! */
+    /* Ausnahme (nachtr√§glich) : der RefreshRP ist nur 320 * 140 Pixel gro√ü!! */
 
-    gfxInitMemRastPort(&StdRP0InMem, SCREEN_WIDTH, SCREEN_HEIGHT); /* CMAP mu· auch Platz haben ! */
+    gfxInitMemRastPort(&StdRP0InMem, SCREEN_WIDTH, SCREEN_HEIGHT); /* CMAP mu√ü auch Platz haben ! */
     gfxInitMemRastPort(&StdRP1InMem, SCREEN_WIDTH, SCREEN_HEIGHT);
 
     gfxInitMemRastPort(&AnimRPInMem, SCREEN_WIDTH, SCREEN_HEIGHT);
@@ -115,7 +116,7 @@ void gfxInit(void)
 
     gfxInitMemRastPort(&LSFloorRPInMem, SCREEN_WIDTH, 32);
 
-    /* der RefreshRP mu· den ganzen Bildschirm aufnehmen kînnen */
+    /* der RefreshRP mu√ü den ganzen Bildschirm aufnehmen k√∂nnen */
     gfxInitMemRastPort(&RefreshRPInMem, SCREEN_WIDTH, SCREEN_HEIGHT);
 
     gfxInitMemRastPort(&ScratchRP, SCREEN_WIDTH, SCREEN_HEIGHT);
@@ -607,7 +608,7 @@ void gfxSetFont(GC *gc, Font *font)
     gc->font = font;
 }
 
-/* berechnet die LÑnge eines Textes in Pixel */
+/* berechnet die L√§nge eines Textes in Pixel */
 U16 gfxTextWidth(GC *gc, const char *txt, size_t len)
 {
     size_t w;
@@ -674,9 +675,9 @@ void gfxPrepareColl(U16 collId)
 
 	/*
          * coll->prepared wird nicht mit dem ScratchRP initialisert, da
-	 * es sonst zu Inkonsistenzen kommen kînnte. Collections im Scratch
-	 * werden als nicht vorbereitet betrachtet, da der ScratchRP stÑndig
-	 * durch andere Bilder Åberschrieben wird
+	 * es sonst zu Inkonsistenzen kommen k√∂nnte. Collections im Scratch
+	 * werden als nicht vorbereitet betrachtet, da der ScratchRP st√§ndig
+	 * durch andere Bilder √ºberschrieben wird
          */
         coll->prepared = NULL;
     }
@@ -1322,8 +1323,8 @@ void gfxILBMToRAW(const U8 *src, U8 *dst, size_t size)
 		pic = pic1;	/* Anfang der aktuellen Zeile */
 		b = ((w + 15) & 0xfff0);
 		do {
-		    a = *sp;	/* Kommando (wiederholen oder Åbernehmen */
-		    sp++;	/* nÑchstes Zeichen */
+		    a = *sp;	/* Kommando (wiederholen oder √ºbernehmen */
+		    sp++;	/* n√§chstes Zeichen */
 		    if (a > 128) {	/* Zeichen wiederholen */
 
 			a = 257 - a;
@@ -1335,7 +1336,7 @@ void gfxILBMToRAW(const U8 *src, U8 *dst, size_t size)
 			    pic += 8;
 			    b -= 8;
 			}
-		    } else {	/* Zeichen Åbernehmen */
+		    } else {	/* Zeichen √ºbernehmen */
 
 			for (x = 0; x <= a; x++) {
 			    y = *sp;

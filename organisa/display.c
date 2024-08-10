@@ -74,7 +74,7 @@ void tcDisplayCommon(void)
     gfxSetGC(l_gc);
     gfxShow(ORG_PICT_ID, GFX_ONE_STEP | GFX_NO_REFRESH, 0, -1, -1);
 
-    /* Geb„ude anzeigen  */
+    /* GebÃ¤ude anzeigen  */
 
     gfxSetFont(l_gc, menuFont);
     gfxSetDrMd(l_gc, GFX_JAM_1);
@@ -159,7 +159,7 @@ void tcDisplayCommon(void)
     gfxPrint(l_gc, line, 35, GFX_PRINT_LEFT);
 
 	/*************************************************************
-	 *  Fluchtweg-l„nge
+	 *  Fluchtweg-lÃ¤nge
 	 */
 
     gfxSetRect(106, 106);

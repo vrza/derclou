@@ -21,7 +21,7 @@
 #include "SDL.h"
 
 #define GFX_SEG_ADDR						(0xA0000000L)
-#define GFX_PAGE_SIZE					(64000L)	/* 320*200 = 64000 Bytes gro· */
+#define GFX_PAGE_SIZE					(64000L)	/* 320*200 = 64000 Bytes gro√ü */
 
 #define GFX_LOAD_BUFFER					StdBuffer0
 #define GFX_DECR_BUFFER					DecrBuffer
@@ -31,7 +31,7 @@
 #define GFX_BUBBLE_FONT_NAME			("bubble.fnt")
 #define GFX_MENU_FONT_NAME				("menu.fnt")
 
-#define GFX_CMAP_OFFSET					61440	// -> Maximalgrî·e 320 * 192
+#define GFX_CMAP_OFFSET					61440	// -> Maximalgr√∂√üe 320 * 192
 
 struct PrintRect {
     uword us_X;
@@ -54,37 +54,37 @@ GC MenuGC;
 GC LSUpperGC;
 GC LSMenuGC;
 
-/* wird verwendet fÅr Double Buffering wÑhrend der Vorbereitung */
+/* wird verwendet f√ºr Double Buffering w√§hrend der Vorbereitung */
 MemRastPort ScratchRP;
-/* Da man von Mem nur ganze Blîcke kopieren kann (ohne Modulo)    */
-/* mÅssen einige Grafiken, bevor sie ins Video RAM kopiert werden */
+/* Da man von Mem nur ganze Bl√∂cke kopieren kann (ohne Modulo)    */
+/* m√ºssen einige Grafiken, bevor sie ins Video RAM kopiert werden */
 /* hier an dieser Stelle gepuffert werden. */
-/* ist als extern definfiert, da Animmodul darauf zugreifen mu· */
+/* ist als extern definfiert, da Animmodul darauf zugreifen mu√ü */
 
 
 MemRastPort StdRP0InMem;
-/* wird benutzt fÅr Objekte, die immer im Speicher sind */
+/* wird benutzt f√ºr Objekte, die immer im Speicher sind */
 MemRastPort StdRP1InMem;
-/* wird benutzt fÅr Objekte, die immer im Speicher sind */
+/* wird benutzt f√ºr Objekte, die immer im Speicher sind */
 MemRastPort RefreshRPInMem;
-/* Bild, das im Moment gerade gezeigt wird (fÅr Refresh) */
+/* Bild, das im Moment gerade gezeigt wird (f√ºr Refresh) */
 MemRastPort AnimRPInMem;
 /* beinhaltet die Animphasen des gerade aktuellen Bildes */
 /* um Inkonsistenzen zu vermeiden, wird jedesmal, bevor eine */
 /* Animphase gezeigt wird, das gesamte Bild in den PrepareRp */
-/* kopiert, der benîtigte Ausschnitt wird dann von dort */
+/* kopiert, der ben√∂tigte Ausschnitt wird dann von dort */
 /* ins Video-RAM kopiert */
-/* ist als extern definfiert, da Animmodul darauf zugreifen mu· */
+/* ist als extern definfiert, da Animmodul darauf zugreifen mu√ü */
 MemRastPort AddRPInMem;
-/* in diesem Rastport befinden sich diverse zusÑtzliche Grafiken */
-/* die in das Bild hinzugefÅgt werden (Gesichter, Werkzeuge)     */
+/* in diesem Rastport befinden sich diverse zus√§tzliche Grafiken */
+/* die in das Bild hinzugef√ºgt werden (Gesichter, Werkzeuge)     */
 /* je nach Situation... 													  */
 /* dieser RP wird je nach Situation ausgewechselt					  */
 MemRastPort LSFloorRPInMem;
-/* in diesem RastPort befindet sich wÑhrend der Planungs-Einbruchs */
-/* phasen das Bild der Bîden */
+/* in diesem RastPort befindet sich w√§hrend der Planungs-Einbruchs */
+/* phasen das Bild der B√∂den */
 MemRastPort LSObjectRPInMem;
-/* in diesem RastPort befinden sich einige Objekte wÑhrend der Planung */
+/* in diesem RastPort befinden sich einige Objekte w√§hrend der Planung */
 
 
 MemRastPort BobRPInMem;

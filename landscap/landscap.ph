@@ -29,7 +29,7 @@
 #define  LS_PREPARE_BUFFER      StdBuffer1
 #define  LS_PREPARE_BUFFER_SIZE STD_BUFFER1_SIZE
 
-#define  LS_LOOTBAG_BUFFER      StdBuffer1	// auch LIV_TEMPLATE_BUFFER 꼗dern!
+#define  LS_LOOTBAG_BUFFER      StdBuffer1	// auch LIV_TEMPLATE_BUFFER 채ndern!
 
 #define  LS_LOOTBAG_X_OFFSET      0
 #define  LS_LOOTBAG_Y_OFFSET    168
@@ -37,7 +37,7 @@
 #define	LS_ESCAPE_CAR_X_OFFSET   14
 #define  LS_ESCAPE_CAR_Y_OFFSET 168
 
-/* folgenden defines bestimmen die Fl꼊he, die zu Kollisionskontrolle */
+/* folgenden defines bestimmen die Fl채che, die zu Kollisionskontrolle */
 /* herangezogen wird , sie beziehen sich auf linke obere Ecke */
 
 #define	LS_COLLIS_COLOR_0		  		1
@@ -133,7 +133,7 @@ struct LandScape {
     uword us_LivingXSpeed;
     uword us_LivingYSpeed;
 
-    word us_RasInfoScrollX;	/* 갶ernimmt die Aufgabe der RasInfo Struct */
+    word us_RasInfoScrollX;	/* 체bernimmt die Aufgabe der RasInfo Struct */
     word us_RasInfoScrollY;	/* des Amiga */
 
     uword us_EscapeCarBobId;
@@ -149,7 +149,7 @@ struct LSFloorSquare {
     ubyte uch_FloorType;	/* 7 : object, 6 : Micro , siehe floor defines ! */
 };
 
-struct LSDoorRefreshNode	/* f걊 jede T걊 existiert eine Node */
+struct LSDoorRefreshNode	/* f체r jede T체r existiert eine Node */
 {
     NODE Link;
 

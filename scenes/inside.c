@@ -187,7 +187,7 @@ void tcShowObjectData(U32 areaID, NODE * node, ubyte perc)
 {
     NODE *n;
 
-    /* Objekt selbst prÑsentieren */
+    /* Objekt selbst pr√§sentieren */
     Present(OL_NR(node), "RasterObject", InitObjectPresent);
 
     /* Inhalt zusammenstellen */
@@ -198,7 +198,7 @@ void tcShowObjectData(U32 areaID, NODE * node, ubyte perc)
 	/* alle Loots durchgehen und anzeigen! */
 	for (n = (NODE *) LIST_HEAD(ObjectList); NODE_SUCC(n);
 	     n = (NODE *) NODE_SUCC(n)) {
-	    /* zur VariablenÅbergabe... (DIRTY, DIRTY...) */
+	    /* zur Variablen√ºbergabe... (DIRTY, DIRTY...) */
 	    SetP(OL_DATA(n), hasLootRelationID, OL_DATA(n),
 		 GetP(OL_DATA(node), hasLootRelationID, OL_DATA(n)));
 

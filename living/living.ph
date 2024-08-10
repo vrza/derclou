@@ -18,10 +18,10 @@
   distribution.
  ****************************************************************************/
 
-#define LIV_LOAD_BUFFER			StdBuffer0	/* muá ein StdBuffer sein -> sonst ClearBuffer in .c „ndern */
+#define LIV_LOAD_BUFFER			StdBuffer0	/* muÃŸ ein StdBuffer sein -> sonst ClearBuffer in .c Ã¤ndern */
 #define LIV_DECR_BUFFER			StdBuffer1
 
-#define LIV_TEMPLATE_BUFFER	StdBuffer1	/* auch LS_LOOTBAG_BUFFER „ndern!!! */
+#define LIV_TEMPLATE_BUFFER	StdBuffer1	/* auch LS_LOOTBAG_BUFFER Ã¤ndern!!! */
 
 #define LIV_NO_FRAME				((uword) -1)
 

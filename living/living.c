@@ -221,12 +221,12 @@ void livDoAnims(ubyte uch_Play, ubyte uch_Move)
 	    }
 
 	    /*
-	     * die View Direction mu· hier gesetzt werden und NICHT
+	     * die View Direction mu√ü hier gesetzt werden und NICHT
 	     * in AnimateLiving, da die Aktion in AnimateLiving nicht
-	     * stattfinden mu·, die ViewDirection zwischenzeitlich
+	     * stattfinden mu√ü, die ViewDirection zwischenzeitlich
 	     * aber eine falschen Wert annimt, was z.B. im Planing
-	     * zu Fehler fÅhrt!
-	     * mu· in jedem Fall geschehen, auch wenn Maxi unsichtbar ist
+	     * zu Fehler f√ºhrt!
+	     * mu√ü in jedem Fall geschehen, auch wenn Maxi unsichtbar ist
 	     */
 
 	    livCorrectViewDirection(liv);

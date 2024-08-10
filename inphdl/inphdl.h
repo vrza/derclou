@@ -17,7 +17,7 @@
   distribution.
  ****************************************************************************/
 
-/* defines fÅr  WaitFor */
+/* defines f√ºr  WaitFor */
 
 #ifndef INPHDL_MODULE
 #define INPHDL_MODULE
@@ -38,7 +38,7 @@
 #define INP_DOWN              (1<<1)
 #define INP_LEFT              (1<<2)
 #define INP_RIGHT             (1<<3)
-#define INP_ESC               (1<<4)   /* wird standardmÑ·ig gesetzt */
+#define INP_ESC               (1<<4)   /* wird standardm√§√üig gesetzt */
 
 /* these two defines have been exchanged by kaweh */
 #define INP_LBUTTONP          (1<<5)	/* left button pressed */

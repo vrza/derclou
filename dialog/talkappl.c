@@ -45,7 +45,7 @@ void tcJobOffer(Person p)
     if (choice == 0) {
 	joinSet(Person_Matt_Stuvysunt, dbGetObjectNr(p));
 	hasSet(Person_Matt_Stuvysunt, dbGetObjectNr(p));	/* Matt hat jetzt Daten von ihm */
-	p->TalkBits &= (0xffffffffL - (1 << Const_tcTALK_JOB_OFFER));	/* Joboffer l”schen! */
+	p->TalkBits &= (0xffffffffL - (1 << Const_tcTALK_JOB_OFFER));	/* Joboffer lÃ¶schen! */
     } else {
 	p->Known = CalcValue(p->Known, 0, 255, 0, 20);
 	Say(BUSINESS_TXT, 0, p->PictID, "MY_OFFER");

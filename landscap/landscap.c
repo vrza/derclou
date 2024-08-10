@@ -118,7 +118,7 @@ void lsBuildScrollWindow(void)
 	}
     }
 
-    /* Objekte setzen - zuerst W„nde */
+    /* Objekte setzen - zuerst WÃ¤nde */
     for (node = (NODE *) LIST_HEAD(ls->p_ObjectRetrieval); NODE_SUCC(node);
 	 node = (NODE *) NODE_SUCC(node)) {
 	LSObject lso = OL_DATA(node);
@@ -137,7 +137,7 @@ void lsBuildScrollWindow(void)
 	    lsTurnObject(lso, lso->uch_Visible, LS_COLLISION);
     }
 
-    /* jetzt noch ein paar Sondef„lle (Kassa, Vase, ...) */
+    /* jetzt noch ein paar SondefÃ¤lle (Kassa, Vase, ...) */
     for (node = (NODE *) LIST_HEAD(ls->p_ObjectRetrieval); NODE_SUCC(node);
 	 node = (NODE *) NODE_SUCC(node)) {
 	LSObject lso = OL_DATA(node);
@@ -337,7 +337,7 @@ static void lsSortObjectList(LIST ** l)
 
 	    /* wenn Abbruch wegen NODE_SUCC(NODE_SUCC(.. erflogte, darf
 	     * nicht der NODE_PRED(node1) genomen werden!
-	     * nach dem Sortieren ist auáerdem Schluá!
+	     * nach dem Sortieren ist auÃŸerdem SchluÃŸ!
 	     */
 
 	    if ((lso1->us_DestY != lso2->us_DestY))
@@ -524,7 +524,7 @@ void lsPatchObjects(void)
 	if (OL_NR(n) == tcLAST_BURGLARY_LEFT_CTRL_OBJ)
 	    lso->ul_Status |= (1 << Const_tcON_OFF);
 
-	lsSetOldState(lso);	/* muá sein! */
+	lsSetOldState(lso);	/* muÃŸ sein! */
 
 	/* change for correcting amiga plans (corrects walls) before using pc level desinger
 	   lso->us_DestX -= 9;

@@ -32,7 +32,7 @@ static ubyte tcDisplayInfoAboutPerson(U32 objID)
     char name[TXT_KEY_LENGTH];
     ubyte ret = 0;
 
-    if (has(Person_Matt_Stuvysunt, objID))	/* hat Matt Wissen Åber ihn? */
+    if (has(Person_Matt_Stuvysunt, objID))	/* hat Matt Wissen √ºber ihn? */
 	ret = Present(objID, "Person", InitPersonPresent);
     else {
 	dbGetObjectName(objID, name);

@@ -9,7 +9,7 @@
 struct DynDlgNode {
     NODE Link;
 
-    ubyte KnownBefore;		/* wie gut Sie bekannt sein mÅssen */
+    ubyte KnownBefore;		/* wie gut Sie bekannt sein m√ºssen */
     ubyte KnownAfter;		/* wie gut Sie danach bekannt sind ! */
 };
 
@@ -82,7 +82,7 @@ void DynamicTalk(U32 Person1ID, U32 Person2ID, ubyte TalkMode)
 
     tcChgPersPopularity(p1, 5);	/* Bekanntheit steigt sehr gering */
 
-    /* je nach Bekanntheitsgrad wird Matt begrÅ·t ! */
+    /* je nach Bekanntheitsgrad wird Matt begr√º√üt ! */
 
     dbGetObjectName(Person2ID, name);
     strcpy(key, name);
@@ -95,7 +95,7 @@ void DynamicTalk(U32 Person1ID, U32 Person2ID, ubyte TalkMode)
 	    known = 0;
 	    knowsSet(Person1ID, Person2ID);
 	} else
-	    known = 1;		/* MOD - kein "FRIENDLY mehr mîglich!" */
+	    known = 1;		/* MOD - kein "FRIENDLY mehr m√∂glich!" */
     }
 
     strcat(key, Extension[known]);
@@ -126,7 +126,7 @@ void DynamicTalk(U32 Person1ID, U32 Person2ID, ubyte TalkMode)
 
 	quit = max = GetNrOfNodes(questions) - 1;
 
-	for (i = 0, stdcount = 0; i < 32; i++)	/* Std Fragen zÑhlen */
+	for (i = 0, stdcount = 0; i < 32; i++)	/* Std Fragen z√§hlen */
 	    if (p2->TalkBits & (1 << i))
 		stdcount++;
 
@@ -244,7 +244,7 @@ LIST *ParseTalkText(LIST * origin, LIST * bubble, ubyte known)
 	    if (*mem != '[')
 		line[line_pos++] = *(mem++);
 	    else {
-		mem++;		/* Klammer Åberspringen ! */
+		mem++;		/* Klammer √ºberspringen ! */
 		key_pos = 0;
 
 		while ((*mem) != ']')
@@ -252,7 +252,7 @@ LIST *ParseTalkText(LIST * origin, LIST * bubble, ubyte known)
 
 		key[key_pos++] = EOS;
 
-		mem++;		/* Klammer Åberspringen ! */
+		mem++;		/* Klammer √ºberspringen ! */
 
 		for (i = 0; i < 3; i++) {	/* Zahlen entfernen */
 		    snr[i] = key[i];
@@ -271,7 +271,7 @@ LIST *ParseTalkText(LIST * origin, LIST * bubble, ubyte known)
 		nr = (ubyte) atol(snr);
 		nr1 = (ubyte) atol(snr1);
 
-		/* keyword einfÅgen */
+		/* keyword einf√ºgen */
 
 		for (i = 0; i < strlen(keyWord); i++)
 		    line[line_pos++] = keyWord[i];

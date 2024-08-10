@@ -22,7 +22,7 @@
 
 void rndInit(void)
 {
-    srand((unsigned int) time(NULL));	/* Zufallszahl Åber Timer initialiseren */
+    srand((unsigned int) time(NULL));	/* Zufallszahl √ºber Timer initialiseren */
 }
 
 void rndDone(void)
