@@ -11,6 +11,7 @@
 */
 /****************************************************************************
   Portions copyright (c) 2005 Vasco Alexandre da Silva Costa
+  Portions copyright (c) 2024 Vladimir Vrzić
 
   Please read the license terms contained in the LICENSE and
   publiclicensecontract.doc files which should be contained with this
@@ -96,6 +97,7 @@ struct Setup {
     unsigned Debug;
     bool CDAudio;
     double Scale;
+    char Filter[8];
 };
 
 extern struct Setup setup;

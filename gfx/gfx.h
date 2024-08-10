@@ -12,6 +12,7 @@
 */
 /****************************************************************************
   Portions copyright (c) 2005 Vasco Alexandre da Silva Costa
+  Portions copyright (c) 2024 Vladimir Vrzić
 
   Please read the license terms contained in the LICENSE and
   publiclicensecontract.doc files which should be contained with this
@@ -38,7 +39,7 @@
 
 typedef enum {
     GFX_JAM_1               = 0,    /* Hintergrund wird gleichbelassen */
-    GFX_JAM_2               = 1	    /* Hintergrund wird mit BackPen �bermalt */
+    GFX_JAM_2               = 1	    /* Hintergrund wird mit BackPen übermalt */
 } GfxDrawModeE;
 
 /* defines for Show */

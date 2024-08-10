@@ -12,6 +12,7 @@
 */
 /****************************************************************************
   Portions copyright (c) 2005 Vasco Alexandre da Silva Costa
+  Portions copyright (c) 2024 Vladimir Vrzić
 
   Please read the license terms contained in the LICENSE and
   publiclicensecontract.doc files which should be contained with this
@@ -570,12 +571,12 @@ static const char aboutString[] =
     "Der Clou! - SDL Port\n"
     "\n"
     "Original version by neo Software Produktions GmbH\n"
-    "Port by Vasco Alexandre da Silva Costa\n"
-    "\n\n"
-    "Copyright (c) 1993,1994 neo Software Produktions GmbH\n"
+    "\n"
+    "Copyright (c) 1993, 1994 neo Software Produktions GmbH\n"
     "Copyright (c) 2005 Vasco Alexandre da Silva Costa\n"
     "Copyright (c) 2005 Thomas Trummer\n"
     "Copyright (c) 2005 Jens Granseuer\n"
+    "Copyright (c) 2024 Vladimir Vrzić\n"
     "\n"
     "Please read the license terms in 'publiclicensecontract.doc'.\n"
     "\n";
@@ -585,9 +586,10 @@ static const char syntaxString[] =
     "\tderclou [-h] [-d[<num>]] [-f] [-m<num>] [-s<num>]\n"
     "Flags:\n"
     "\t-d[<num>]  - enable debug output (debug level [1])\n"
-    "\t-f         - fullscreen mode\n"
-    "\t-g<mode>   - graphics mode (normal,2x,linear2x)\n"
     "\t-h         - show help\n"
+    "\t-f         - fullscreen mode\n"
+    "\t-g<num>    - graphics scale factor\n"
+    "\t-q<filter> - scaler quality (nearest,linear)\n"
     "\t-m<num>    - set music volume to <num> (0-255)\n"
     "\t-s<num>    - set sfx volume to <num> (0-255)\n"
     "\t-t         - trainer\n";
@@ -599,6 +601,7 @@ static void parseOptions(int argc, char *argv[])
     int i;
     const char *s;
     double scaleArg;
+    char filter[8] = "nearest";
 
     /* default values. */
     setup.FullScreen    = false;
@@ -609,6 +612,7 @@ static void parseOptions(int argc, char *argv[])
     setup.Debug         = 1;
     setup.CDAudio       = false;
     setup.Scale         = 1.0;
+    memcpy(setup.Filter, filter, sizeof(filter));
 
     for (i = 1; i < argc; i++) {
         s = argv[i];
@@ -616,25 +620,29 @@ static void parseOptions(int argc, char *argv[])
         if (s[0] == '-') {
             switch (s[1]) {
             case 'g':
-                /* TODO better arg parsing */
-                sscanf(s+2, "%lf", &scaleArg);
+                scaleArg = strtod(s+2, NULL);
                 setup.Scale = max(scaleArg, 1);
                 break;
 
             case 'd':
-                setup.Debug = max(atoi(s+2), 0);
+                setup.Debug = max(strtol(s+2, NULL, 10), 0);
                 break;
 
             case 'f':
                 setup.FullScreen = true;
                 break;
 
+            case 'q':
+                memcpy(setup.Filter, s+2, 7);
+                printf("filtering: %s\n", setup.Filter);
+                break;
+
             case 's':
-                setup.SfxVolume = clamp(atoi(s+2), 0, SND_MAX_VOLUME);
+                setup.SfxVolume = clamp(strtol(s+2, NULL, 10), 0, SND_MAX_VOLUME);
                 break;
 
             case 'm':
-                setup.MusicVolume = clamp(atoi(s+2), 0, SND_MAX_VOLUME);
+                setup.MusicVolume = clamp(strtol(s+2, NULL, 10), 0, SND_MAX_VOLUME);
                 break;
 
             case 't':
@@ -664,15 +672,15 @@ static void parseOptions(int argc, char *argv[])
                 break;
 
             case 'h':
-                puts(aboutString);
-                puts(syntaxString);
-                exit(0);
+                SDL_Log(aboutString);
+                SDL_Log(syntaxString);
+                exit(EXIT_SUCCESS);
                 return;
 
             default:
-                puts(aboutString);
-                puts(syntaxString);
-                exit(1);
+                SDL_Log(aboutString);
+                SDL_Log(syntaxString);
+                exit(EXIT_FAILURE);
                 return;
             }
         }

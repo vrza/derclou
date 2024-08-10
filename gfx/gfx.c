@@ -85,7 +85,7 @@ void gfxInit(void)
 	    initialWidth, initialHeight,
 	    flags);
     sdlRenderer = SDL_CreateRenderer(sdlWindow, -1, 0);
-    SDL_SetHint(SDL_HINT_RENDER_SCALE_QUALITY, "linear");
+    SDL_SetHint(SDL_HINT_RENDER_SCALE_QUALITY, setup.Filter);
     SDL_RenderSetLogicalSize(sdlRenderer, SCREEN_WIDTH, SCREEN_HEIGHT);
 
     windowSurface = SDL_CreateRGBSurface(0, SCREEN_WIDTH, SCREEN_HEIGHT,
