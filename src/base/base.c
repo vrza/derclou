@@ -719,3 +719,9 @@ int main(int argc, char **argv)
     tcDone();
     return 0;
 }
+
+void tcQuit()
+{
+    SDL_Quit();
+    exit(EXIT_SUCCESS);
+}

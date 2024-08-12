@@ -9,6 +9,7 @@
 
 #include "base/base.h"
 #include "inphdl/inphdl.h"
+#include "gfx/scaling.h"
 
 #include "SDL.h"
 
@@ -128,6 +129,7 @@ S32 inpWaitFor(S32 l_Mask)
 		    switch (ev.window.event) {
 			    case SDL_WINDOWEVENT_SIZE_CHANGED:
 			    case SDL_WINDOWEVENT_EXPOSED:
+				    gfxResizeToFit();
 				    gfxRefreshArea(0, 0, SCREEN_WIDTH, SCREEN_HEIGHT);
 			    break;
 			    default:
@@ -136,10 +138,7 @@ S32 inpWaitFor(S32 l_Mask)
 		}
 		break;
 	    case SDL_QUIT:
-		{
-		    SDL_Quit();
-		    exit(0);
-		}
+		tcQuit();
 		break;
 	    case SDL_KEYDOWN:
 		{

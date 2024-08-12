@@ -129,4 +129,6 @@ U32 tcGetProcessorType(void);
 #define PROC_80386		2L
 #define PROC_80486		3L
 
+void tcQuit(void);
+
 #endif
