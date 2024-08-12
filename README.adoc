@@ -15,7 +15,7 @@ SDL port by:
 ** HSC music code and valuable insights
 
 * Vladimir Vrzić <vvrzic AT gmail.com>
-** Resizable game window and other improvements
+** Resizable game window, configurable texture filtering, configurable font shadows, cross-compiler windows build, and other fixes and improvements
 
 * Jens Granseuer <jensgr AT gmx.net>
 ** patches
@@ -43,14 +43,16 @@ Here is the command line usage:
 
 ....
 Syntax:
-        derclou [-h] [-d[<num>]] [-f] [-m<num>] [-s<num>]
+        derclou [-h] [-d[<num>]] [-f] [-g<num>] [-q<filter>] [-a] [-m<num>] [-s<num>] [-t]
 Flags:
-        -d[<num>]  - enable debug output (debug level [1])
-        -f         - fullscreen mode
-        -g<num>    - graphics zoom factor (1,2,4)
         -h         - show help
-        -m<num>    - set music volume to <num> (0-255)
-        -s<num>    - set sfx volume to <num> (0-255)
+        -d[<num>]  - enable debug output (debug level [1])
+        -f         - run in full screen mode
+        -g<num>    - graphics scale factor
+        -q<filter> - scaler quality (nearest,linear)
+        -a         - enable font shadows
+        -m<num>    - music volume (0-255)
+        -s<num>    - sfx volume (0-255)
         -t         - trainer
 ....
 

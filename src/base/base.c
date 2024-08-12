@@ -583,10 +583,10 @@ static const char aboutString[] =
 
 static const char syntaxString[] =
     "Syntax:\n"
-    "\tderclou [-h] [-d[<num>]] [-f] [-m<num>] [-s<num>]\n"
+    "\tderclou [-h] [-d[<num>]] [-f] [-g<num>] [-q<filter>] [-a] [-m<num>] [-s<num>] [-t]\n"
     "Flags:\n"
-    "\t-d[<num>]  - enable debug output (debug level [1])\n"
     "\t-h         - show help\n"
+    "\t-d[<num>]  - enable debug output (debug level [1])\n"
     "\t-f         - run in full screen mode\n"
     "\t-g<num>    - graphics scale factor\n"
     "\t-q<filter> - scaler quality (nearest,linear)\n"
