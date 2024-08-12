@@ -263,6 +263,8 @@ double scaleFromWindowSize(int w, int h);
 CoordinatesU16 getBoxedMouseCoordinates(int w, int h, double scale);
 CoordinatesDouble getScaledBoxedMouseCoordinates(void);
 
+#define GFX_SDL_FULLSCREEN SDL_WINDOW_FULLSCREEN_DESKTOP
+
 SDL_Window* getMainSDLWindow(void);
 
 #include "gfx/gfxnch4.h"

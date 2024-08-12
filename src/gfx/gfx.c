@@ -72,7 +72,7 @@ void gfxInit(void)
 
     flags = SDL_WINDOW_OPENGL | SDL_WINDOW_RESIZABLE;
     if (setup.FullScreen) {
-        flags |= SDL_WINDOW_FULLSCREEN_DESKTOP;
+        flags |= GFX_SDL_FULLSCREEN;
     }
 
     scaledWidth = (double)SCREEN_WIDTH * setup.Scale;

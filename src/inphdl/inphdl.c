@@ -7,6 +7,7 @@
   distribution.
  ****************************************************************************/
 
+#include "base/base.h"
 #include "inphdl/inphdl.h"
 
 #include "SDL.h"
@@ -143,6 +144,15 @@ S32 inpWaitFor(S32 l_Mask)
 	    case SDL_KEYDOWN:
 		{
 		    switch (ev.key.keysym.sym) {
+		    case SDLK_f:
+			if (setup.FullScreen) {
+			    SDL_SetWindowFullscreen(getMainSDLWindow(), 0);
+			    setup.FullScreen = false;
+			} else {
+			    SDL_SetWindowFullscreen(getMainSDLWindow(), GFX_SDL_FULLSCREEN);
+			    setup.FullScreen = true;
+			}
+			break;
 		    case SDLK_LEFT:
 			if ((l_Mask & INP_LEFT))
 			    action |= INP_KEYBOARD + INP_LEFT;
