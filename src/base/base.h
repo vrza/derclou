@@ -98,6 +98,7 @@ struct Setup {
     bool CDAudio;
     double Scale;
     char Filter[8];
+    bool FontShadow;
 };
 
 extern struct Setup setup;

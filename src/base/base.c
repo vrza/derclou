@@ -613,6 +613,7 @@ static void parseOptions(int argc, char *argv[])
     setup.CDAudio       = false;
     setup.Scale         = 1.0;
     memcpy(setup.Filter, filter, sizeof(filter));
+    setup.FontShadow    = false;
 
     for (i = 1; i < argc; i++) {
         s = argv[i];
@@ -635,6 +636,10 @@ static void parseOptions(int argc, char *argv[])
             case 'q':
                 memcpy(setup.Filter, s+2, 7);
                 printf("filtering: %s\n", setup.Filter);
+                break;
+
+            case 'a':
+                setup.FontShadow = true;
                 break;
 
             case 's':

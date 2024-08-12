@@ -81,8 +81,10 @@ void DrawPresent(LIST * present, U8 firstLine, GC *gc, U8 max)
 	    break;
 	}
 
-	gfxSetPens(gc, 252, 224, GFX_SAME_PEN);
-	gfxPrintExact(gc, txt, 89, j + 1);
+	if (setup.FontShadow) {
+		gfxSetPens(gc, 252, 224, GFX_SAME_PEN);
+		gfxPrintExact(gc, txt, 89, j + 1);
+	}
 
 	gfxSetPens(gc, 254, 224, GFX_SAME_PEN);
 	gfxPrintExact(gc, txt, 88, j);

@@ -878,7 +878,7 @@ void gfxPrint(GC *gc, const char *txt, U16 y, U32 mode)
 	    x += (GlobalPrintRect.us_Width - w) / 2;
     }
 
-    if (mode & GFX_PRINT_SHADOW) {
+    if ((mode & GFX_PRINT_SHADOW) && setup.FontShadow) {
 	U8 tmp;
 
         tmp = gc->foreground;

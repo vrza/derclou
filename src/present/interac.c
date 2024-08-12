@@ -352,22 +352,26 @@ static void DrawBubble(LIST * bubble, U8 firstLine, U8 activ, GC *gc, U32 max)
 	    break;
 
 	if (*line != '*') {
-	    gfxSetPens(gc, BG_TXT_COLOR, GFX_SAME_PEN, GFX_SAME_PEN);
-	    gfxPrintExact(gc, line, X_OFFSET, j + 1);
+	    if (setup.FontShadow) {
+		    gfxSetPens(gc, BG_TXT_COLOR, GFX_SAME_PEN, GFX_SAME_PEN);
+		    gfxPrintExact(gc, line, X_OFFSET, j + 1);
+	    }
 
 	    gfxSetPens(gc, VG_TXT_COLOR, GFX_SAME_PEN, GFX_SAME_PEN);
 	    gfxPrintExact(gc, line, X_OFFSET, j);
 	} else {
 	    line = line + 1;
 
-	    if (activ == i)
-		gfxSetPens(gc, BG_ACTIVE_COLOR, GFX_SAME_PEN,
-			   GFX_SAME_PEN);
-	    else
-		gfxSetPens(gc, BG_INACTIVE_COLOR, GFX_SAME_PEN,
-			   GFX_SAME_PEN);
+	    if (setup.FontShadow) {
+		    if (activ == i)
+			gfxSetPens(gc, BG_ACTIVE_COLOR, GFX_SAME_PEN,
+				   GFX_SAME_PEN);
+		    else
+			gfxSetPens(gc, BG_INACTIVE_COLOR, GFX_SAME_PEN,
+				   GFX_SAME_PEN);
 
-	    gfxPrintExact(gc, line, X_OFFSET + 1, j + 1);
+		    gfxPrintExact(gc, line, X_OFFSET + 1, j + 1);
+	    }
 
 	    if (activ == i)
 		gfxSetPens(gc, VG_ACTIVE_COLOR, GFX_SAME_PEN,
