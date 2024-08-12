@@ -14,5 +14,6 @@
 double scaleFromWindowSize(int w, int h);
 CoordinatesU16 getBoxedMouseCoordinates(int w, int h, double scale);
 CoordinatesDouble getScaledBoxedMouseCoordinates(void);
+void gfxResizeToFit(void);
 
 #endif

@@ -80,3 +80,20 @@ double scaleFromWindowSize(int w, int h)
        ? (double)h / (double)SCREEN_HEIGHT
        : (double)w / (double)SCREEN_WIDTH;
 }
+
+void gfxResizeToFit()
+{
+    int w, h;
+    SDL_GetWindowSize(getMainSDLWindow(), &w, &h);
+    double windowAscpectRatio = (double)w /(double)h;
+    double logicalScreenAspectRatio = (double)SCREEN_WIDTH / (double)SCREEN_HEIGHT;
+    int newWidth = w;
+    int newHeight = h;
+    double scale = scaleFromWindowSize(w, h);
+    if (windowAscpectRatio > logicalScreenAspectRatio) {
+        newWidth = (int)round((double)SCREEN_WIDTH * scale);
+    } else {
+        newHeight = (int)round((double)SCREEN_HEIGHT * scale);
+    }
+    SDL_SetWindowSize(getMainSDLWindow(), newWidth, newHeight);
+}
