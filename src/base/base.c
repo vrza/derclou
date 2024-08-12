@@ -587,9 +587,10 @@ static const char syntaxString[] =
     "Flags:\n"
     "\t-d[<num>]  - enable debug output (debug level [1])\n"
     "\t-h         - show help\n"
-    "\t-f         - fullscreen mode\n"
+    "\t-f         - run in full screen mode\n"
     "\t-g<num>    - graphics scale factor\n"
     "\t-q<filter> - scaler quality (nearest,linear)\n"
+    "\t-a         - enable font shadows\n"
     "\t-m<num>    - set music volume to <num> (0-255)\n"
     "\t-s<num>    - set sfx volume to <num> (0-255)\n"
     "\t-t         - trainer\n";
