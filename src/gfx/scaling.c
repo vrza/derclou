@@ -8,6 +8,7 @@
  * distribution.
  */
 
+#include <math.h>
 #include "SDL.h"
 #include "gfx/gfx.h"
 

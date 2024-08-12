@@ -21,7 +21,6 @@
  ****************************************************************************/
 
 #include <assert.h>
-#include <math.h>
 #include "SDL.h"
 
 #include "base/base.h"
