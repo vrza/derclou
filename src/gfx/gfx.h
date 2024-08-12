@@ -263,5 +263,7 @@ double scaleFromWindowSize(int w, int h);
 CoordinatesU16 getBoxedMouseCoordinates(int w, int h, double scale);
 CoordinatesDouble getScaledBoxedMouseCoordinates(void);
 
+SDL_Window* getMainSDLWindow(void);
+
 #include "gfx/gfxnch4.h"
 #endif

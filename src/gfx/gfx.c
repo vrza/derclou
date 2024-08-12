@@ -2023,72 +2023,7 @@ void gfxGetMouseXY(GC *gc, U16 *pMouseX, U16 *pMouseY)
     if (pMouseY) *pMouseY = logicalMouse.y;
 }
 
-CoordinatesDouble getScaledBoxedMouseCoordinates()
+SDL_Window* getMainSDLWindow()
 {
-    int w, h;
-    double scale;
-    CoordinatesU16 boxedMouse;
-    CoordinatesDouble scaledBoxedMouse;
-
-    SDL_GetWindowSize(sdlWindow, &w, &h);
-    scale = scaleFromWindowSize(w, h);
-    boxedMouse = getBoxedMouseCoordinates(w, h, scale);
-
-    scaledBoxedMouse.x = boxedMouse.x / scale;
-    scaledBoxedMouse.y = boxedMouse.y / scale;
-
-    return scaledBoxedMouse;
-}
-
-CoordinatesU16 getBoxedMouseCoordinates(int w, int h, double scale)
-{
-    int mouseX, mouseY = 0;
-    double usedW, usedH, marginX, marginY;
-    CoordinatesU16 boxedMouse;
-    double logicalScreenAspectRatio = (double)SCREEN_WIDTH / (double)SCREEN_HEIGHT;
-    double windowAscpectRatio = (double)w /(double)h;
-
-    SDL_PumpEvents();
-    SDL_GetMouseState(&mouseX, &mouseY);
-
-    usedH = h;
-    usedW = w;
-    boxedMouse.x = mouseX;
-    boxedMouse.y = mouseY;
-
-    /* adjust for letterboxing */
-    if (windowAscpectRatio > logicalScreenAspectRatio) {
-        usedW = SCREEN_WIDTH * scale;
-        marginX = (((double)w) - usedW) / 2;
-        if (mouseX < marginX) {
-            boxedMouse.x = 0;
-        } else if (mouseX > w - marginX) {
-            boxedMouse.x = (int)usedW;
-        } else {
-            boxedMouse.x = mouseX - marginX;
-        }
-    }
-
-    if (windowAscpectRatio < logicalScreenAspectRatio) {
-        usedH = SCREEN_HEIGHT * scale;
-        marginY = (((double)h) - usedH) / 2;
-        if (mouseY < marginY) {
-            boxedMouse.y = 0;
-        } else if (mouseY > h - marginY) {
-            boxedMouse.y = (int)usedH;
-        } else {
-            boxedMouse.y = mouseY - marginY;
-        }
-    }
-
-    return boxedMouse;
-}
-
-double scaleFromWindowSize(int w, int h)
-{
-    double logicalScreenAspectRatio = (double)SCREEN_WIDTH / (double)SCREEN_HEIGHT;
-    double windowAscpectRatio = (double)w /(double)h;
-    return (windowAscpectRatio > logicalScreenAspectRatio)
-       ? (double)h / (double)SCREEN_HEIGHT
-       : (double)w / (double)SCREEN_WIDTH;
+	return sdlWindow;
 }
