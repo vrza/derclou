@@ -1,4 +1,0 @@
-CC		= gcc
-SDL2_CONFIG	= sdl2-config
-
-include ./base.mk

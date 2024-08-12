@@ -53,7 +53,7 @@ void tcDisplayTools(U32 personNr, U32 displayData);
 
 struct Organisation Organisation;
 
-#include "organisa/display.c"
+#include "organisa/display.h"
 
 void tcResetOrganisation(void)
 {

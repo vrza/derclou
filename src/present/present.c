@@ -23,7 +23,7 @@
 
 struct PresentControl PresentControl = { NULL, 0, 0 };
 
-#include "present/presenta.c"
+#include "present/presenta.h"
 
 void DrawPresent(LIST * present, U8 firstLine, GC *gc, U8 max)
 {
