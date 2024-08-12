@@ -1,4 +1,3 @@
-.POSIX:
 RM ?= rm
 
 native:
