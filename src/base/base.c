@@ -605,16 +605,17 @@ static void parseOptions(int argc, char *argv[])
     char filter[8] = "nearest";
 
     /* default values. */
-    setup.FullScreen    = false;
-    setup.SfxVolume     = SND_MAX_VOLUME;
-    setup.MusicVolume   = SND_MAX_VOLUME;
-    setup.Profidisk     = false;
-    setup.CDRom         = false;
-    setup.Debug         = 1;
-    setup.CDAudio       = false;
-    setup.Scale         = 1.0;
+    setup.FullScreen       = false;
+    setup.SfxVolume        = SND_MAX_VOLUME;
+    setup.MusicVolume      = SND_MAX_VOLUME;
+    setup.Profidisk        = false;
+    setup.CDRom            = false;
+    setup.Debug            = 1;
+    setup.CDAudio          = false;
+    setup.Scale            = 1.0;
     memcpy(setup.Filter, filter, sizeof(filter));
-    setup.FontShadow    = false;
+    setup.FontShadow       = false;
+    setup.WindowKeepAspect = false;
 
     for (i = 1; i < argc; i++) {
         s = argv[i];

@@ -99,6 +99,7 @@ struct Setup {
     double Scale;
     char Filter[8];
     bool FontShadow;
+    bool WindowKeepAspect;
 };
 
 extern struct Setup setup;

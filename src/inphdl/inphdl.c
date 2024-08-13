@@ -129,7 +129,7 @@ S32 inpWaitFor(S32 l_Mask)
 		    switch (ev.window.event) {
 			    case SDL_WINDOWEVENT_SIZE_CHANGED:
 			    case SDL_WINDOWEVENT_EXPOSED:
-				    gfxResizeToFit();
+				    if (setup.WindowKeepAspect) gfxResizeToFit();
 				    gfxRefreshArea(0, 0, SCREEN_WIDTH, SCREEN_HEIGHT);
 			    break;
 			    default:
@@ -151,6 +151,10 @@ S32 inpWaitFor(S32 l_Mask)
 			    SDL_SetWindowFullscreen(getMainSDLWindow(), GFX_SDL_FULLSCREEN);
 			    setup.FullScreen = true;
 			}
+			break;
+		    case SDLK_k:
+			setup.WindowKeepAspect = ! setup.WindowKeepAspect;
+			if (setup.WindowKeepAspect) gfxResizeToFit();
 			break;
 		    case SDLK_LEFT:
 			if ((l_Mask & INP_LEFT))
