@@ -179,7 +179,7 @@ ubyte tcShowTool(ubyte choice)
     return (oldChoice);
 }
 
-void tcSellTool()
+void tcSellTool(void)
 {
     LIST *bubble, *tools;
     NODE *node;
