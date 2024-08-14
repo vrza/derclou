@@ -22,7 +22,7 @@ $(BINARY): $(OBJECTS)
 
 $(OBJDIR)/%.o: %.c
 	mkdir -p $(OBJDIR) && cd $(OBJDIR) && mkdir -p $(DIRS)
-	$(CC) $(CFLAGS) $(LDFLAGS) -I$(HEADERDIR) -I$(dir $<) -c $< -o $@
+	$(CC) $(CFLAGS) -I$(HEADERDIR) -I$(dir $<) -c $< -o $@
 
 clean:
 	$(RM) -r $(OBJDIR) $(BINDIR)
