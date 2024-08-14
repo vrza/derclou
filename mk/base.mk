@@ -16,13 +16,15 @@ OBJECTS := $(addprefix $(OBJDIR)/,$(SOURCES:%.c=%.o))
 
 all: $(BINARY)
 
-$(BINARY): $(OBJECTS)
-	mkdir -p $(BINDIR)
+
+$(BINARY): $(BINDIR) $(OBJECTS)
 	$(CC) -o $(BINARY) $(OBJECTS) $(LDFLAGS)
 
 $(OBJDIR)/%.o: %.c
-	mkdir -p $(OBJDIR) && cd $(OBJDIR) && mkdir -p $(DIRS)
 	$(CC) $(CFLAGS) -I$(HEADERDIR) -I$(dir $<) -c $< -o $@
+
+$(BINDIR):
+	mkdir -p $(OBJDIR) && cd $(OBJDIR) && mkdir -p $(DIRS)
 
 clean:
 	$(RM) -r $(OBJDIR) $(BINDIR)
