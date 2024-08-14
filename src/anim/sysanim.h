@@ -21,7 +21,7 @@
  * Aufbau der Anim.List Datei (Aufbau einer Zeile)
  *
  * 	PictureMode,PictsPerSecc,Pic1,AnimPic,PicAnzahl,Animphase
- *	Breite, Animphase H”he, Animphase offset, PlayMode
+ *	Breite, Animphase HÃ¶he, Animphase offset, PlayMode
  *	XDest, YDest (als Offset zum 1. Bild)
  */
 
