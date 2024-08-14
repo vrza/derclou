@@ -196,7 +196,7 @@ static void hsc_set_voice(int channel, voice_type vt)
 }
 
 
-static void hsc_process_row()
+static void hsc_process_row(void)
 {
     int i, channel, cur_pattern, note, effect;
 

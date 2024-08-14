@@ -11,8 +11,9 @@
 #include <math.h>
 #include "SDL.h"
 #include "gfx/gfx.h"
+#include "gfx/scaling.h"
 
-CoordinatesDouble getScaledBoxedMouseCoordinates()
+CoordinatesDouble getScaledBoxedMouseCoordinates(void)
 {
     int w, h;
     double scale;
@@ -82,7 +83,7 @@ double scaleFromWindowSize(int w, int h)
        : (double)w / (double)SCREEN_WIDTH;
 }
 
-void gfxResizeToFit()
+void gfxResizeToFit(void)
 {
     int w, h;
     SDL_GetWindowSize(getMainSDLWindow(), &w, &h);

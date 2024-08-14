@@ -2022,7 +2022,7 @@ void gfxGetMouseXY(GC *gc, U16 *pMouseX, U16 *pMouseY)
     if (pMouseY) *pMouseY = logicalMouse.y;
 }
 
-SDL_Window* getMainSDLWindow()
+SDL_Window* getMainSDLWindow(void)
 {
 	return sdlWindow;
 }

@@ -215,7 +215,7 @@ void StdInit(void)
     tcPersonGreetsMatt();
 }
 
-void tcPlaySound()
+void tcPlaySound(void)
 {
     if (!(GamePlayMode & GP_MUSIC_OFF)) {
 	switch (GetCurrentScene()->EventNr) {
@@ -284,7 +284,7 @@ void tcPlaySound()
     }
 }
 
-void tcPlayStreetSound()
+void tcPlayStreetSound(void)
 {
     if (!(GamePlayMode & GP_MUSIC_OFF)) {
         if (setup.Profidisk) {
