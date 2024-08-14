@@ -228,10 +228,10 @@ S32 inpWaitFor(S32 l_Mask)
 
 	    case SDL_MOUSEBUTTONDOWN:
 		if (IHandler.MouseExists && IHandler.MouseStatus) {
-		    if (ev.button.button == SDL_BUTTON_LEFT) {
+		    if ((l_Mask & INP_LBUTTONP) && ev.button.button == SDL_BUTTON_LEFT) {
 			action |= INP_MOUSE + INP_LBUTTONP;
 		    }
-		    if (ev.button.button == SDL_BUTTON_RIGHT) {
+		    if ((l_Mask & INP_RBUTTONP) && ev.button.button == SDL_BUTTON_RIGHT) {
 			action |= INP_MOUSE + INP_RBUTTONP;
 		    }
 		}
