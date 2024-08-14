@@ -15,7 +15,7 @@ SDL port by:
 ** HSC music code and valuable insights
 
 * Vladimir Vrzić <vvrzic AT gmail.com>
-** Resizable game window, configurable texture filtering, configurable font shadows, cross-compiler windows build, and other fixes and improvements
+** Resizable game window, configurable texture filtering, configurable font shadows, cross-compiler windows build, gamepad support, misc other fixes and improvements
 
 * Jens Granseuer <jensgr AT gmx.net>
 ** patches
