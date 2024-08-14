@@ -95,5 +95,5 @@ Enjoy!
 
 == Links
 
-https://en.wikipedia.org/wiki/The_Clue!
-http://www.mobygames.com/game/clue
+* https://en.wikipedia.org/wiki/The_Clue![]
+* http://www.mobygames.com/game/clue[]
