@@ -13,6 +13,8 @@
 
 #include "SDL.h"
 
+const int JOY_AXIS_DEAD_ZONE = 8000;
+
 struct IHandler {
     S32 ul_XSensitivity;
     S32 ul_YSensitivity;
@@ -49,7 +51,6 @@ void inpOpenAllInputDevs(void)
     IHandler.MouseStatus = true;
 
     IHandler.JoyExists = false;
-/*
     if (SDL_InitSubSystem(SDL_INIT_JOYSTICK) == 0) {
         if (SDL_NumJoysticks() > 0) {
             IHandler.Joystick = SDL_JoystickOpen(0);
@@ -65,21 +66,18 @@ void inpOpenAllInputDevs(void)
         DebugMsg(ERR_DEBUG, ERROR_MODULE_INPUT,
                  "SDL_InitSubSystem: %s", SDL_GetError());
     }
-*/
     inpClearKbBuffer();
 }
 
 void inpCloseAllInputDevs(void)
 {
-    /*
-       if (SDL_JoystickOpened(0)) {
-       SDL_JoystickClose(IHandler.Joystick);
-       }
+    if (IHandler.Joystick) {
+        SDL_JoystickClose(IHandler.Joystick);
+    }
 
-       if (SDL_WasInit(SDL_INIT_JOYSTICK) != 0) {
-       SDL_QuitSubSystem(SDL_INIT_JOYSTICK);
-       }
-     */
+    if (SDL_WasInit(SDL_INIT_JOYSTICK) != 0) {
+        SDL_QuitSubSystem(SDL_INIT_JOYSTICK);
+    }
 }
 
 void inpMousePtrOn(void)
@@ -235,25 +233,46 @@ S32 inpWaitFor(S32 l_Mask)
                         }
                     }
                     break;
-
-                    /*
-                       case SDL_JOYBUTTONDOWN:
-                       if (IHandler.JoyExists) {
-                       switch (ev.jbutton.button) {
-                       case 0:
-                       action |= INP_MOUSE + INP_LBUTTONP;
-                       break;
-
-                       case 1:
-                       action |= INP_MOUSE + INP_RBUTTONP;
-                       break;
-
-                       default:
-                       break;
-                       }
-                       }
-                       break;
-                     */
+                case SDL_JOYAXISMOTION:
+                    if (ev.jaxis.axis == 0) {        // X axis
+                        if ((l_Mask & INP_LEFT) && (ev.jaxis.value < -JOY_AXIS_DEAD_ZONE)) {
+                            action |= INP_KEYBOARD | INP_LEFT;
+                        } else if ((l_Mask & INP_RIGHT) && (ev.jaxis.value > JOY_AXIS_DEAD_ZONE)) {
+                            action |= INP_KEYBOARD | INP_RIGHT;
+                        }
+                    } else if (ev.jaxis.axis == 1) { // Y axis
+                        if ((l_Mask & INP_UP) && (ev.jaxis.value < -JOY_AXIS_DEAD_ZONE)) {
+                            action |= INP_KEYBOARD | INP_UP;
+                        } else if ((l_Mask & INP_DOWN) && (ev.jaxis.value > JOY_AXIS_DEAD_ZONE)) {
+                            action |= INP_KEYBOARD | INP_DOWN;
+                        }
+                    }
+                    break;
+                case SDL_JOYBUTTONUP:
+                    if ((l_Mask & (INP_LBUTTONP | INP_LBUTTONR)) && ev.jbutton.button <= SDL_CONTROLLER_BUTTON_Y) {
+                        action |= INP_KEYBOARD | INP_LBUTTONP;
+                    }
+                    switch (ev.jbutton.button) {
+                        case SDL_CONTROLLER_BUTTON_GUIDE:
+                        case SDL_CONTROLLER_BUTTON_START:
+                            if (IHandler.FunctionKeyStatus)
+                                action |= INP_KEYBOARD + INP_FUNCTION_KEY;
+                            break;
+                        default:
+                            break;
+                    }
+                    break;
+                case SDL_JOYHATMOTION:
+                    if ((l_Mask & INP_LEFT) && (ev.jhat.value == SDL_HAT_LEFT)) {
+                        action |= INP_KEYBOARD | INP_LEFT;
+                    } else if ((l_Mask & INP_RIGHT) && (ev.jhat.value == SDL_HAT_RIGHT)) {
+                        action |= INP_KEYBOARD | INP_RIGHT;
+                    } else if ((l_Mask & INP_UP) && (ev.jhat.value == SDL_HAT_UP)) {
+                        action |= INP_KEYBOARD | INP_UP;
+                    } else if ((l_Mask & INP_DOWN) && (ev.jhat.value == SDL_HAT_DOWN)) {
+                        action |= INP_KEYBOARD | INP_DOWN;
+                    }
+                    break;
                 default:
                     break;
             }
