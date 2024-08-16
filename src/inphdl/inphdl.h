@@ -78,4 +78,7 @@ extern void inpSetKeyRepeat(unsigned char rate);
 
 extern void inpClearKbBuffer(void);
 
+void addJoystick(void);
+void removeJoystick(void);
+
 #endif

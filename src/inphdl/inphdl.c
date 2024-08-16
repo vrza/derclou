@@ -52,6 +52,25 @@ void inpOpenAllInputDevs(void)
 
     IHandler.JoyExists = false;
     if (SDL_InitSubSystem(SDL_INIT_JOYSTICK) == 0) {
+        addJoystick();
+    } else {
+        DebugMsg(ERR_DEBUG, ERROR_MODULE_INPUT,
+                 "SDL_InitSubSystem: %s", SDL_GetError());
+    }
+    inpClearKbBuffer();
+}
+
+void inpCloseAllInputDevs(void)
+{
+    removeJoystick();
+
+    if (SDL_WasInit(SDL_INIT_JOYSTICK) != 0) {
+        SDL_QuitSubSystem(SDL_INIT_JOYSTICK);
+    }
+}
+
+void addJoystick(void)
+{
         if (SDL_NumJoysticks() > 0) {
             IHandler.Joystick = SDL_JoystickOpen(0);
 
@@ -62,21 +81,12 @@ void inpOpenAllInputDevs(void)
                          "Failed to open Joystick 0");
             }
         }
-    } else {
-        DebugMsg(ERR_DEBUG, ERROR_MODULE_INPUT,
-                 "SDL_InitSubSystem: %s", SDL_GetError());
-    }
-    inpClearKbBuffer();
 }
 
-void inpCloseAllInputDevs(void)
+void removeJoystick(void)
 {
     if (IHandler.Joystick) {
         SDL_JoystickClose(IHandler.Joystick);
-    }
-
-    if (SDL_WasInit(SDL_INIT_JOYSTICK) != 0) {
-        SDL_QuitSubSystem(SDL_INIT_JOYSTICK);
     }
 }
 
@@ -272,6 +282,12 @@ S32 inpWaitFor(S32 l_Mask)
                     } else if ((l_Mask & INP_DOWN) && (ev.jhat.value == SDL_HAT_DOWN)) {
                         action |= INP_KEYBOARD | INP_DOWN;
                     }
+                    break;
+                case SDL_JOYDEVICEADDED:
+                    addJoystick();
+                    break;
+                case SDL_JOYDEVICEREMOVED:
+                    removeJoystick();
                     break;
                 default:
                     break;
