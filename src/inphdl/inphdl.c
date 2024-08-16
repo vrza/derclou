@@ -28,7 +28,7 @@ struct IHandler {
     bool MouseStatus;
 
     bool JoyExists;
-    SDL_Joystick *Joystick;
+    SDL_Joystick *Joysticks[256];
 };
 
 struct IHandler IHandler;
@@ -40,8 +40,27 @@ static void inpDoPseudoMultiTasking(void)
     animator();
 }
 
+static void addJoystick(Sint32 which)
+{
+    IHandler.Joysticks[which] = SDL_JoystickOpen(which);
+
+    if (!IHandler.Joysticks[which]) {
+        DebugMsg(ERR_DEBUG, ERROR_MODULE_INPUT,
+                 "Failed to open Joystick %d", which);
+    }
+}
+
+static void removeJoystick(Sint32 which)
+{
+    if (IHandler.Joysticks[which]) {
+        SDL_JoystickClose(IHandler.Joysticks[which]);
+    }
+}
+
 void inpOpenAllInputDevs(void)
 {
+    Sint32 joyNum;
+
     inpSetKeyRepeat((1 << 5) | 10);
 
     IHandler.EscStatus = true;
@@ -50,9 +69,10 @@ void inpOpenAllInputDevs(void)
     IHandler.MouseExists = true;
     IHandler.MouseStatus = true;
 
-    IHandler.JoyExists = false;
     if (SDL_InitSubSystem(SDL_INIT_JOYSTICK) == 0) {
-        addJoystick();
+        for (joyNum = 0; joyNum < SDL_NumJoysticks(); joyNum++) {
+           addJoystick(joyNum);
+        }
     } else {
         DebugMsg(ERR_DEBUG, ERROR_MODULE_INPUT,
                  "SDL_InitSubSystem: %s", SDL_GetError());
@@ -62,31 +82,13 @@ void inpOpenAllInputDevs(void)
 
 void inpCloseAllInputDevs(void)
 {
-    removeJoystick();
+    Sint32 joyNum;
+    for (joyNum = 0; joyNum < SDL_NumJoysticks(); joyNum++) {
+        removeJoystick(joyNum);
+    }
 
     if (SDL_WasInit(SDL_INIT_JOYSTICK) != 0) {
         SDL_QuitSubSystem(SDL_INIT_JOYSTICK);
-    }
-}
-
-void addJoystick(void)
-{
-        if (SDL_NumJoysticks() > 0) {
-            IHandler.Joystick = SDL_JoystickOpen(0);
-
-            if (IHandler.Joystick) {
-                IHandler.JoyExists = true;
-            } else {
-                DebugMsg(ERR_DEBUG, ERROR_MODULE_INPUT,
-                         "Failed to open Joystick 0");
-            }
-        }
-}
-
-void removeJoystick(void)
-{
-    if (IHandler.Joystick) {
-        SDL_JoystickClose(IHandler.Joystick);
     }
 }
 
@@ -284,10 +286,10 @@ S32 inpWaitFor(S32 l_Mask)
                     }
                     break;
                 case SDL_JOYDEVICEADDED:
-                    addJoystick();
+                    addJoystick(ev.jdevice.which);
                     break;
                 case SDL_JOYDEVICEREMOVED:
-                    removeJoystick();
+                    removeJoystick(ev.jdevice.which);
                     break;
                 default:
                     break;
