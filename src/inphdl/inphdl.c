@@ -207,12 +207,12 @@ S32 inpWaitFor(S32 l_Mask)
                         case SDLK_F9:
                         case SDLK_F10:
                         case SDLK_F11:
-                        case SDLK_F12:
-                        case SDLK_F13:
-                        case SDLK_F14:
-                        case SDLK_F15:
                             if (IHandler.FunctionKeyStatus)
                                 action |= INP_KEYBOARD + INP_FUNCTION_KEY;
+                            break;
+
+                        case SDLK_F12:
+                            gfxScreenshot();
                             break;
 
                         default:

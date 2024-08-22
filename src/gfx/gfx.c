@@ -2024,5 +2024,16 @@ void gfxGetMouseXY(GC *gc, U16 *pMouseX, U16 *pMouseY)
 
 SDL_Window* getMainSDLWindow(void)
 {
-	return sdlWindow;
+    return sdlWindow;
+}
+
+void gfxScreenshot(void)
+{
+    static int screenshotsTaken = 0;
+    char fileName[256];
+
+    sprintf(fileName, "./screenshot%02d.png", screenshotsTaken + 1);
+    if (SDL_SaveBMP(Screen, fileName) == 0) {
+        screenshotsTaken++;
+    }
 }
