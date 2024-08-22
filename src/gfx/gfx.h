@@ -268,6 +268,7 @@ CoordinatesDouble getScaledBoxedMouseCoordinates(void);
 SDL_Window* getMainSDLWindow(void);
 
 void gfxScreenshot(void);
+void setWindowIconFromFile(char *file);
 
 #include "gfx/gfxnch4.h"
 #endif

@@ -84,6 +84,9 @@ void gfxInit(void)
 	    SDL_WINDOWPOS_UNDEFINED,
 	    initialWidth, initialHeight,
 	    flags);
+
+    setWindowIconFromFile("icon.bmp");
+
     sdlRenderer = SDL_CreateRenderer(sdlWindow, -1, 0);
     SDL_SetHint(SDL_HINT_RENDER_SCALE_QUALITY, setup.Filter);
     SDL_RenderSetLogicalSize(sdlRenderer, SCREEN_WIDTH, SCREEN_HEIGHT);
@@ -2035,5 +2038,14 @@ void gfxScreenshot(void)
     sprintf(fileName, "./screenshot%02d.png", screenshotsTaken + 1);
     if (SDL_SaveBMP(Screen, fileName) == 0) {
         screenshotsTaken++;
+    }
+}
+
+void setWindowIconFromFile(char *file)
+{
+    SDL_Surface *icon = NULL;
+    icon = SDL_LoadBMP(file);
+    if (icon) {
+        SDL_SetWindowIcon(getMainSDLWindow(), icon);
     }
 }
