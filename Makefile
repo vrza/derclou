@@ -1,10 +1,10 @@
 RM ?= rm -f
 
 native:
-	$(MAKE) -C src -f makefile.gcc
+	$(MAKE) -f makefile.gcc
 
 win-x64:
-	$(MAKE) -C src -f makefile.mingw
+	$(MAKE) -f makefile.mingw
 
 clean:
 	$(RM) -r ./target
